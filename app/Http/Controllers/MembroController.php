@@ -23,6 +23,14 @@ class MembroController extends Controller
         return $this->index('Primeiras Visitas');
     }
 
+    public function conexao_up(){
+        return $this->index('Conexão X Up');
+    }
+
+    public function infantil(){
+        return $this->index('Infantil');
+    }
+
     public function index($situacao){
         $membros = Membro::where('situacao', $situacao)->get();
         return view('membros/index', compact('membros','situacao'));
@@ -148,6 +156,7 @@ class MembroController extends Controller
                 'fone' => $request->fone_pai,
                 'email' => $request->email_pai,
                 'dt_nascimento' => $request->dt_nascimento_pai,
+                'st_batismo' => $request->st_batismo_pai,
                 'data_batismo' => $request->data_batismo_pai,
                 'cooperador' => $request->cooperador_pai,
                 'funcao' => $request->funcao_pai,
@@ -158,6 +167,9 @@ class MembroController extends Controller
                 'recebeu_lembranca' => $request->recebeu_lembranca_pai,
                 'obs' => $request->recebeu_lembranca_pai,
                 'audio_base64' => $request->audio_base64_pai,
+                'cpf' => $request->cpf_pai,
+                'rg' => $request->rg_pai,
+                'endereco' => $request->endereco_pai,
             ];
 
             $homem = Membro::create($dados_homem);
@@ -192,6 +204,7 @@ class MembroController extends Controller
                 'fone' => $request->fone_mae,
                 'email' => $request->email_mae,
                 'dt_nascimento' => $request->dt_nascimento_mae,
+                'st_batismo' => $request->st_batismo_mae,
                 'data_batismo' => $request->data_batismo_mae,
                 'cooperador' => $request->cooperador_mae,
                 'funcao' => $request->funcao_mae,
@@ -202,6 +215,9 @@ class MembroController extends Controller
                 'recebeu_lembranca' => $request->recebeu_lembranca_mae,
                 'obs' => $request->recebeu_lembranca_mae,
                 'audio_base64' => $request->audio_base64_mae,
+                'cpf' => $request->cpf_mae,
+                'rg' => $request->rg_mae,
+                'endereco' => $request->endereco_mae,
             ];
 
             $mulher = Membro::create($dados_mulher);
@@ -243,6 +259,12 @@ class MembroController extends Controller
         }
         elseif($request->situacao == "Primeiras Visitas"){
             $redirect = 'primeiras_visitas';
+        }
+        elseif($request->situacao == "Conexão X Up"){
+            $redirect = 'conexao_up';
+        }
+        elseif($request->situacao == "Infantil"){
+            $redirect = 'infantil';
         }
 
         return redirect()->route($redirect)->with('mensagem','Membro Cadastrado');
@@ -331,6 +353,12 @@ class MembroController extends Controller
         elseif($membro->situacao == "Primeiras Visitas"){
             $redirect = 'primeiras_visitas';
         }
+        elseif($membro->situacao == "Conexão X Up"){
+            $redirect = 'conexao_up';
+        }
+        elseif($membro->situacao == "Infantil"){
+            $redirect = 'infantil';
+        }
 
         return redirect()->route($redirect)->with('mensagem','Membro Editado!');
 
@@ -374,6 +402,12 @@ class MembroController extends Controller
         elseif($membro->situacao == "Primeiras Visitas"){
             $redirect = 'primeiras_visitas';
         }
+        elseif($membro->situacao == "Conexão X Up"){
+            $redirect = 'conexao_up';
+        }
+        elseif($membro->situacao == "Infantil"){
+            $redirect = 'infantil';
+        }
 
         return redirect()->route($redirect)->with('mensagem','Membro Excluído!');
     }
@@ -414,7 +448,20 @@ class MembroController extends Controller
         elseif($redirect == "Primeiras Visitas"){
             $redirect = 'primeiras_visitas';
         }
+        elseif($redirect == "Conexão X Up"){
+            $redirect = 'conexao_up';
+        }
+        elseif($redirect == "Infantil"){
+            $redirect = 'infantil';
+        }
 
         return redirect()->route($redirect)->with('mensagem','Membro Batizado!');
     }
+
+    public function familia($id){
+        $membro = Membro::where('id', $id)->first();
+
+        return view('membros/familia', compact('membro'));
+    }
+
 }

@@ -16,6 +16,7 @@ class Membro extends Model
         'fone',
         'email',
         'foto',
+        'st_batismo',
         'data_batismo',
         'cooperador',
         'igreja_anterior',
@@ -30,6 +31,9 @@ class Membro extends Model
         'audio_base64',
         'pai_id',
         'mae_id',
+        'cpf',
+        'rg',
+        'endereco',
     ];
 
     public function conjugue(){

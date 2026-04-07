@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Familia;
-use App\Models\FamiliaFilho;
+//use App\Models\FamiliaFilho;
 use App\Models\Membro;
 
 class FamiliaController extends Controller
 {
     public function index(){
         $familias = Familia::all();
+
         return view('familias/index', compact('familias'));
     }
 

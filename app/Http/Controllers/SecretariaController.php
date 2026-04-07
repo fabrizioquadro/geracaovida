@@ -10,6 +10,7 @@ use App\Models\Reuniao;
 use App\Models\Familia;
 use App\Models\Culto;
 use App\Models\Ministerio;
+use App\Models\Reserva;
 
 class SecretariaController extends Controller
 {
@@ -233,9 +234,11 @@ class SecretariaController extends Controller
             'ds_culto' => $request->ds_culto,
             'st_culto' => 'Aberto',
             'tp_culto' => 'Atividade',
-            'ministerio_id' => $request->ministerio_id,
+            'nr_vagas' => $request->nr_vagas,
+            //'ministerio_id' => $request->ministerio_id,
         ];
-        Culto::create($dados);
+        $culto = Culto::create($dados);
+        $culto->ministerios()->sync($request->ministerio_id);
         return redirect()->route('secretaria.atividades')->with('mensagem','Atividade Cadastrada!');
     }
 
@@ -251,11 +254,13 @@ class SecretariaController extends Controller
     public function update_atividade(Request $request){
         $culto = Culto::where('id', $request->culto_id)->first();
         $culto->dt_hr_culto = $request->dt_culto." ".$request->hr_culto;
-        $culto->ministerio_id = $request->ministerio_id;
+        //$culto->ministerio_id = $request->ministerio_id;
         $culto->nm_culto = $request->nm_culto;
         $culto->ds_culto = $request->ds_culto;
+        $culto->nr_vagas = $request->nr_vagas;
 
         $culto->save();
+        $culto->ministerios()->sync($request->ministerio_id);
         return redirect()->route('secretaria.atividades')->with('mensagem','Atividade Editada!');
     }
 
@@ -265,8 +270,49 @@ class SecretariaController extends Controller
     }
 
     public function delete_atividade(Request $request){
-        Culto::where('id', $request->culto_id)->delete();
+        $culto = Culto::where('id', $request->culto_id)->first();
+        $culto->ministerios()->sync([]);
+        $culto->delete();
         return redirect()->route('secretaria.atividades')->with('mensagem','Atividade Excluída!');
+    }
+
+    public function reservas($id){
+        $atividade = Culto::where('id', $id)->first();
+        return view('secretaria/atividades/reservas', compact('atividade'));
+    }
+
+    public function setar_reserva(){
+        if($_GET['tipo'] == 'membro'){
+            $dados = [
+                'culto_id' => $_GET['atividade_id'],
+                'membro_id' => $_GET['membro_id'],
+                'tp_reserva' => 'Membro',
+            ];
+
+            if($_GET['acao'] == "inserir"){
+                Reserva::create($dados);
+            }
+            else{
+                Reserva::where($dados)->delete();
+            }
+        }
+    }
+
+    public function reservas_set_convite(Request $request){
+        $dados = [
+            'culto_id' => $request->atividade_id,
+            'tp_reserva' => 'convite',
+            'nm_convite' => $request->nm_convite,
+        ];
+
+        Reserva::create($dados);
+        return redirect()->route('secretaria.atividades.reservas', $request->atividade_id);
+    }
+
+    public function reservas_delete_convite($id = null){
+        $reserva = Reserva::where('id', $id)->first();
+        $reserva->delete();
+        return redirect()->route('secretaria.atividades.reservas', $reserva->culto_id);
     }
 
 }

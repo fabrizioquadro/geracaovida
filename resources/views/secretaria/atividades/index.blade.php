@@ -21,6 +21,8 @@
                         <th>Data</th>
                         <th>Ministerio</th>
                         <th>Atividade</th>
+                        <th>Vagas</th>
+                        <th>Reservas</th>
                         <th>Situação</th>
                         <th></th>
                     </tr>
@@ -33,8 +35,14 @@
                         @endphp
                         <tr>
                             <td> <span style='display:none'>{{ $atividade->dt_hr_culto }}</span> {{ $data_atividade }}</td>
-                            <td>{{ $atividade->ministerio->nm_ministerio }}</td>
+                            <td>
+                                @foreach($atividade->ministerios as $ministerio)
+                                    {{ $ministerio->nm_ministerio.", " }}
+                                @endforeach
+                            </td>
                             <td>{{ $atividade->nm_culto }}</td>
+                            <td>{{ $atividade->nr_vagas }}</td>
+                            <td>{{ $atividade->get_reservas() }}</td>
                             <td>{{ $atividade->st_culto }}</td>
                             <td>
                                 <div class="dropdown">
@@ -44,6 +52,7 @@
                                     <div class="dropdown-menu" data-popper-placement="bottom-end">
                                         <a class="dropdown-item waves-effect" href="{{ route('secretaria.atividades.editar', $atividade->id) }}"><i class="mdi mdi-pencil-outline me-1"></i> Editar</a>
                                         <a class="dropdown-item waves-effect" href="{{ route('secretaria.atividades.excluir', $atividade->id) }}"><i class="mdi mdi-trash-can-outline me-1"></i> Excluir</a>
+                                        <a class="dropdown-item waves-effect" href="{{ route('secretaria.atividades.reservas', $atividade->id) }}"><i class="mdi mdi-check me-1"></i> Reservas</a>
                                     </div>
                                 </div>
                             </td>

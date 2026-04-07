@@ -36,4 +36,12 @@ class Ministerio extends Model
             return false;
         }
     }
+
+    public function membros(){
+        return MembroMinisterio::where('ministerio_id', $this->id)->get();
+    }
+
+    public function cultos(){
+        return $this->belongsToMany(Culto::class);
+    }
 }

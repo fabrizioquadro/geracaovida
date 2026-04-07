@@ -52,14 +52,20 @@
                         <label for="email">Email:</label>
                     </div>
                 </div>
-                <div class="col-md-3 mt-3">
-                    <div class="form-floating form-floating-outline">
-                        <input class="form-control" type="date" id="dt_nascimento" name="dt_nascimento"/>
-                        <label for="dt_nascimento">Nascimento:</label>
-                    </div>
-                </div>
                 @if($situacao == "Membro")
-                    <div class="col-md-3 mt-3">
+                    <div class="col-md-2 mt-3">
+                        <div class="form-floating form-floating-outline">
+                            <input class="form-control" type="date" id="dt_nascimento" name="dt_nascimento"/>
+                            <label for="dt_nascimento">Nascimento:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mt-3">
+                        <div class="form-floating form-floating-outline">
+                            <input class="form-control" type="text" id="st_batismo" name="st_batismo"/>
+                            <label for="st_batismo">Tipo Batismo</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mt-3">
                         <div class="form-floating form-floating-outline">
                             <input class="form-control" type="date" id="data_batismo" name="data_batismo"/>
                             <label for="data_batismo">Data Batismo:</label>
@@ -68,11 +74,35 @@
                 @else
                     <div class="col-md-3 mt-3">
                         <div class="form-floating form-floating-outline">
+                            <input class="form-control" type="date" id="dt_nascimento" name="dt_nascimento"/>
+                            <label for="dt_nascimento">Nascimento:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <div class="form-floating form-floating-outline">
                             <input class="form-control" type="text" id="como_veio" name="como_veio"/>
                             <label for="como_veio">Como Veio?</label>
                         </div>
                     </div>
                 @endif
+                <div class="col-md-3 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="cpf" name="cpf"/>
+                        <label for="cpf">CPF:</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="rg" name="rg"/>
+                        <label for="rg">RG:</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="endereco" name="endereco"/>
+                        <label for="endereco">Endereço:</label>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-3 mt-3">

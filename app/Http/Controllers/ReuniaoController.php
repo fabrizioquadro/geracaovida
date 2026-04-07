@@ -9,21 +9,18 @@ use App\Models\Membro;
 use App\Models\MembroMinisterio;
 use App\Models\Culto;
 use App\Models\CultoMinisterio;
+use App\Models\Reserva;
 
 class ReuniaoController extends Controller
 {
     public function index($ministerio_id){
         $ministerio = Ministerio::where('id', $ministerio_id)->first();
-
-        $cultos = Culto::where('ministerio_id', $ministerio->id)
-        ->where('tp_culto', 'Atividade')
-        ->get();
-        return view('reunioes/index', compact('cultos','ministerio'));
+        return view('reunioes/index', compact('ministerio'));
     }
 
     public function acessar($id){
         $culto = Culto::where('id', $id)->first();
-        $ministerio = Ministerio::where('id', $culto->ministerio_id)->first();
+        //$ministerio = Ministerio::where('id', $culto->ministerio_id)->first();
 
         //vamos buscar os generos que fazem parte dessos ministerios do culto
         $membros = MembroMinisterio::where('ministerio_id', $culto->ministerio_id)->get();
@@ -54,7 +51,14 @@ class ReuniaoController extends Controller
         $var = explode(' ', $culto->dt_hr_culto);
         $dt_culto = $var[0];
         $hr_culto = $var[1];
-        return view('reunioes/acessar', compact('culto','dt_culto','hr_culto','ministerio','membros','frequentes','primeiras'));
+
+        $nm_pagina = '';
+        foreach($culto->ministerios as $ministerio){
+            $nm_pagina .= ", $ministerio->nm_ministerio";
+        }
+        $nm_pagina = substr($nm_pagina, 2);
+
+        return view('reunioes/acessar', compact('culto','dt_culto','hr_culto','nm_pagina','membros','frequentes','primeiras'));
     }
 
     public function acessar_set(Request $request){
@@ -64,40 +68,13 @@ class ReuniaoController extends Controller
         $culto->st_culto = 'Finalizado';
         $culto->save();
 
-        return redirect()->route('reunioes', $request->ministerio_id)->with('mensagem','Culto/Reunião Finalizado!');
+        return redirect()->route('reunioes.acessar', $culto->id)->with('mensagem','Culto/Reunião Finalizado!');
     }
 
     public function presenca($id){
         $culto = Culto::where('id', $id)->first();
-        $ministerio = Ministerio::where('id', $culto->ministerio_id)->first();
 
-        //vamos buscar os generos que fazem parte dessos ministerios do culto
-        $membros = MembroMinisterio::where('ministerio_id', $culto->ministerio_id)->get();
-        $in = array();
-        foreach($membros as $membro){
-            $in[] = $membro->membro_id;
-        }
-
-        $var = explode(' ', $culto->dt_hr_culto);
-        $membros = Membro::where('created_at', '<=', $var[0]." 23:59:59")
-        ->where('situacao', 'Membro')
-        ->whereIn('id', $in)
-        ->orderBy('nome')
-        ->get();
-
-        $frequentes = Membro::where('created_at', '<=', $var[0]." 23:59:59")
-        ->where('situacao', 'Visitante Frequente')
-        ->whereIn('id', $in)
-        ->orderBy('nome')
-        ->get();
-
-        $primeiras = Membro::where('created_at', '<=', $var[0]." 23:59:59")
-        ->where('situacao', 'Primeiras Visitas')
-        ->whereIn('id', $in)
-        ->orderBy('nome')
-        ->get();
-
-        return view('reunioes/presenca', compact('membros','frequentes','primeiras','culto','ministerio'));
+        return view('reunioes/presenca', compact('culto'));
     }
 
     public function adicionar($id){
@@ -121,4 +98,18 @@ class ReuniaoController extends Controller
         Culto::create($dados);
         return redirect()->route('reunioes', $request->ministerio_id)->with('mensagem','Aividade Registrada');
     }
+
+    public function set_presenca_convite(){
+        $reserva = Reserva::where('id', $_GET['reserva_id'])->first();
+        if($_GET['tipo'] == "inserir"){
+            $reserva->presenca_convite = 'Sim';
+        }
+        else{
+            $reserva->presenca_convite = 'Não';
+        }
+        $reserva->save();
+        $retorno['controle'] = 'true';
+        echo json_encode($retorno);
+    }
+
 }

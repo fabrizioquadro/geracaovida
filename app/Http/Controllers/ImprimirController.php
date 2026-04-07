@@ -218,11 +218,15 @@ class ImprimirController extends Controller
                 }
                 $html .= "
                 </tbody>
-            </table>         
+            </table>
 
             ";
 
             return view('layout/imprimir', compact('html'));
         }
+    }
+
+    public function imprimir_reservas(){
+        
     }
 }

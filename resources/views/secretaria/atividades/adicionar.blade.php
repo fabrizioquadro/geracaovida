@@ -22,21 +22,28 @@
                         <label for="hr_culto">Hora:</label>
                     </div>
                 </div>
-                <div class="col-md-3 mt-3">
+                <div class="col-md-2 mt-3">
                     <div class="form-floating form-floating-outline">
-                        <select required class="form-select" id="ministerio_id" name='ministerio_id' aria-label="Default select example">
-                            <option value=""></option>
+                        <input required class="form-control" type="number" id="nr_vagas" name="nr_vagas"/>
+                        <label for="nr_vagas">Vagas:</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input required class="form-control" type="text" id="nm_culto" name="nm_culto"/>
+                        <label for="nm_culto">Atividade:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <select required multiple class="form-select h-px-100" id="ministerio_id" name='ministerio_id[]' aria-label="Default select example">
                             @foreach($ministerios as $ministerio)
                                 <option value="{{ $ministerio->id }}">{{ $ministerio->nm_ministerio }}</option>
                             @endforeach
                         </select>
                         <label for="ministerio_id">Ministerio:</label>
-                    </div>
-                </div>
-                <div class="col-md-5 mt-3">
-                    <div class="form-floating form-floating-outline">
-                        <input required class="form-control" type="text" id="nm_culto" name="nm_culto"/>
-                        <label for="nm_culto">Atividade:</label>
                     </div>
                 </div>
             </div>

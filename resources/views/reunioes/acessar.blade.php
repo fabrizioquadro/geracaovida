@@ -4,13 +4,13 @@
 <div class="card card-border-shadow-primary mb-4">
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h4 class="card-title">{{ $ministerio->nm_ministerio." - ".$culto->nm_culto }} - Acessar</h4>
+            <h4 class="card-title">{{ $nm_pagina." - ".$culto->nm_culto }} - Acessar</h4>
         </div>
         <hr>
         <form id='formulario' action="{{ route('reunioes.acessar_set') }}" method="post">
             @csrf
             <input type="hidden" name="culto_id" value="{{ $culto->id }}">
-            <input type="hidden" name="ministerio_id" value="{{ $ministerio->id }}">
+            {{--<input type="hidden" name="ministerio_id" value="{{ $ministerio->id }}"> --}}
             <input type="hidden" name="audio_base64" id="audio_base64">
             <div class="row">
                 <div class="col-md-2 mt-3 form-group">
@@ -78,52 +78,28 @@
                     </audio>
                 @endif
                 <hr>
-                <h6 class="card-title">Presenças</h6>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-primary">Membros</li>
-                    @foreach($membros as $membro)
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <span>{{ $membro->nome }}</span>
-                                @if($membro->confere_presenca($culto->id) == 'checked')
-                                    <span>Participou</span>
-                                @else
-                                    <span>Não Participou</span>
-                                @endif
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-                <ul class="list-group mt-3">
-                    <li class="list-group-item list-group-item-primary">Visitantes Frequentes</li>
-                    @foreach($frequentes as $membro)
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <span>{{ $membro->nome }}</span>
-                                @if($membro->confere_presenca($culto->id) == 'checked')
-                                    <span>Participou</span>
-                                @else
-                                    <span>Não Participou</span>
-                                @endif
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-                <ul class="list-group mt-3">
-                    <li class="list-group-item list-group-item-primary">Primeiras Visitas</li>
-                    @foreach($primeiras as $membro)
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between">
-                                <span>{{ $membro->nome }}</span>
-                                @if($membro->confere_presenca($culto->id) == 'checked')
-                                    <span>Participou</span>
-                                @else
-                                    <span>Não Participou</span>
-                                @endif
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+                <h4 class="card-title">Membros - Presenças</h4>
+                <table class="table mt-5">
+                    <tbody>
+                        @foreach($culto->reservas() as $reserva)
+                            <tr>
+                                <th>{{ $reserva->membro->nome }}</th>
+                                <td>{{ $reserva->membro->confere_presenca($culto->id) == 'checked' ? 'Participou' : 'Não Participou' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <h4 class="card-title mt-5">Convites </h4>
+                <table class="table mt-5">
+                    <tbody>
+                        @foreach($culto->convites() as $reserva)
+                            <tr>
+                                <th>{{ $reserva->nm_convite }}</th>
+                                <td>{{ $reserva->presenca_convite == 'Sim' ? 'Participou' : 'Não Participou' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             @endif
         </form>
     </div>

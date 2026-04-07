@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-bordered">
-                    @foreach($cultos as $culto)
+                    @foreach($ministerio->cultos as $culto)
                         @php
                         $var = explode(' ', $culto->dt_hr_culto);
                         $dt_hr_culto = dataDbForm($var[0])." ".$var[1];
@@ -34,7 +34,7 @@
                         <tr>
                             <td> <span style='display:none'>strtotime($culto->dt_hr_culto)</span> {{ $dt_hr_culto }}</td>
                             <td>{{ $culto->nm_culto }}</td>
-                            <td>{{ $culto->ministerio->nm_ministerio }}</td>
+                            <td>{{ $ministerio->nm_ministerio }}</td>
                             <td>{{ $culto->st_culto }}</td>
                             <td>
                                 <div class="dropdown">

@@ -61,10 +61,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/membros', [MembroController::class, 'membros'])->name('membros');
     Route::get('/visitas_frequentes', [MembroController::class, 'visitas_frequentes'])->name('visitas_frequentes');
     Route::get('/primeiras_visitas', [MembroController::class, 'primeiras_visitas'])->name('primeiras_visitas');
+    Route::get('/conexao_up', [MembroController::class, 'conexao_up'])->name('conexao_up');
+    Route::get('/infantil', [MembroController::class, 'infantil'])->name('infantil');
     Route::get('/membros/adicionar/{situacao}/{genero}', [MembroController::class, 'adicionar'])->name('membros.adicionar');
     Route::get('/membros/editar/{id}', [MembroController::class, 'editar'])->name('membros.editar');
     Route::get('/membros/excluir/{id}', [MembroController::class, 'excluir'])->name('membros.excluir');
     Route::get('/membros/visualizar/{id}', [MembroController::class, 'visualizar'])->name('membros.visualizar');
+    Route::get('/membros/familia/{id}', [MembroController::class, 'familia'])->name('membros.familia');
     Route::get('/membros/enviar_visitas_frequentes/{id}', [MembroController::class, 'enviar_visitas_frequentes'])->name('membros.enviar_visitas_frequentes');
     Route::get('/membros/batizar/{id}', [MembroController::class, 'batizar'])->name('membros.batizar');
     Route::post('/membros/enviar_visitas_frequentes_set', [MembroController::class, 'enviar_visitas_frequentes_set'])->name('membros.enviar_visitas_frequentes_set');
@@ -72,6 +75,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/membros/insert', [MembroController::class, 'insert'])->name('membros.insert');
     Route::post('/membros/update', [MembroController::class, 'update'])->name('membros.update');
     Route::post('/membros/delete', [MembroController::class, 'delete'])->name('membros.delete');
+
+    //Route::get('/familias', [FamiliaController::class, 'index'])->name('familias');
+    //Route::get('/familias/visualizar/{tipo}/{id}', [FamiliaController::class, 'visiaulizar'])->name('familias.visualizar');
 
     Route::get('/cultos_reunioes', [CultoController::class, 'index'])->name('cultos_reunioes');
     Route::get('/cultos_reunioes/adicionar', [CultoController::class, 'adicionar'])->name('cultos_reunioes.adicionar');
@@ -120,9 +126,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/secretaria/atividades/adicionar', [SecretariaController::class, 'adicionar_atividade'])->name('secretaria.atividades.adicionar');
     Route::get('/secretaria/atividades/editar/{id}', [SecretariaController::class, 'editar_atividade'])->name('secretaria.atividades.editar');
     Route::get('/secretaria/atividades/excluir/{id}', [SecretariaController::class, 'excluir_atividade'])->name('secretaria.atividades.excluir');
+    Route::get('/secretaria/atividades/reservas/{id}', [SecretariaController::class, 'reservas'])->name('secretaria.atividades.reservas');
     Route::post('/secretaria/atividades/insert', [SecretariaController::class, 'insert_atividade'])->name('secretaria.atividades.insert');
     Route::post('/secretaria/atividades/update', [SecretariaController::class, 'update_atividade'])->name('secretaria.atividades.update');
     Route::post('/secretaria/atividades/delete', [SecretariaController::class, 'delete_atividade'])->name('secretaria.atividades.delete');
+    Route::get('/secretaria/atividades/reservas_set', [SecretariaController::class, 'setar_reserva'])->name('secretaria.atividades.reservas.set');
+    Route::post('/secretaria/atividades/reservas_set_convite', [SecretariaController::class, 'reservas_set_convite'])->name('secretaria.atividades.reservas.set_convite');
+    Route::get('/secretaria/atividades/reservas_delete_convite/{id?}', [SecretariaController::class, 'reservas_delete_convite'])->name('secretaria.atividades.reservas.delete_convite');
 
     Route::get('/visitas', [VisitaController::class, 'index'])->name('visitas');
     Route::get('/visitas/acessar/{id}', [VisitaController::class, 'acessar'])->name('visitas.acessar');
@@ -181,6 +191,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reunioes_presencas/{id}', [ReuniaoController::class, 'presenca'])->name('reunioes.presencas');
     Route::get('/reunioes_adicionar/{id}', [ReuniaoController::class, 'adicionar'])->name('reunioes.adicionar');
     Route::post('/reunioes_insert', [ReuniaoController::class, 'insert'])->name('reunioes.insert');
+    Route::get('/reunioes_set_presenca_convite', [ReuniaoController::class, 'set_presenca_convite'])->name('reunioes.set_presenca_convite');
 
     Route::get('/imprimir/{tipo}/{id}', [ImprimirController::class, 'imprimir'])->name('imprimir');
 

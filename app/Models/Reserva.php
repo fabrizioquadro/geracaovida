@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CultoMinisterio extends Model
+class Reserva extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'culto_id',
-        'ministerio_id',
+        'membro_id',
+        'tp_reserva',
+        'nm_convite',
+        'presenca_convite',
     ];
 
-    public function ministerio(){
-        return $this->belongsTo(Ministerio::class);
+    public function membro(){
+        return $this->belongsTo(Membro::class);
     }
 }

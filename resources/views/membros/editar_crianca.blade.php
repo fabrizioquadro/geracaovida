@@ -57,6 +57,12 @@
             <div class="row">
                 <div class="col-md-3 mt-3">
                     <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="fone" name="fone" maxlength="15" onkeypress="mascara( this, mtel )" value="{{ $membro->fone }}"/>
+                        <label for="fone_pai">Fone:</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <div class="form-floating form-floating-outline">
                         <select class="form-select" id="pai" name='pai_id' aria-label="Default select example">
                             <option value=""></option>
                             @foreach($pais as $pai)
@@ -93,6 +99,24 @@
                     <div class="form-floating form-floating-outline">
                         <input class="form-control" type="text" id="postar_redes" name="postar_redes" value="{{ $membro->postar_redes }}"/>
                         <label for="postar_redes">Postar nas Redes?</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="cpf" name="cpf" value="{{ $membro->cpf }}"/>
+                        <label for="cpf">CPF:</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="rg" name="rg" value="{{ $membro->rg }}"/>
+                        <label for="rg">RG:</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="endereco" name="endereco" value="{{ $membro->endereco }}"/>
+                        <label for="endereco">Endereço:</label>
                     </div>
                 </div>
             </div>

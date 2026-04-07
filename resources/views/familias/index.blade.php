@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="d-flex justify-content-between">
             <h4 class="card-title">Familias</h4>
-            <a href="{{ route('familias.adicionar') }}" class="btn btn-primary">Adicionar</a>
+            {{--<a href="{{ route('familias.adicionar') }}" class="btn btn-primary">Adicionar</a>--}}
         </div>
         @if($mensagem = Session::get('mensagem'))
             <div class="alert alert-success alert-dismissible mt-3" role="alert">
@@ -32,9 +32,10 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </button>
                                     <div class="dropdown-menu" data-popper-placement="bottom-end">
-                                        <a class="dropdown-item waves-effect" href="{{ route('familias.editar', $familia->id) }}"><i class="mdi mdi-pencil-outline me-1"></i> Editar</a>
-                                        <a class="dropdown-item waves-effect" href="{{ route('familias.excluir', $familia->id) }}"><i class="mdi mdi-trash-can-outline me-1"></i> Excluir</a>
-                                        <a class="dropdown-item waves-effect" href="{{ route('familias.visualizar', $familia->id) }}"><i class="mdi mdi-eye me-1"></i> Visualizar</a>
+                                        {{--<a class="dropdown-item waves-effect" href="{{ route('familias.editar', $familia->id) }}"><i class="mdi mdi-pencil-outline me-1"></i> Editar</a>--}}
+                                        {{--<a class="dropdown-item waves-effect" href="{{ route('familias.excluir', $familia->id) }}"><i class="mdi mdi-trash-can-outline me-1"></i> Excluir</a>--}}
+                                        {{--<a class="dropdown-item waves-effect" href="{{ route('familias.visualizar', $familia->id) }}"><i class="mdi mdi-eye me-1"></i> Visualizar</a>--}}
+                                        <a class="dropdown-item waves-effect" href="{{ route('familias.visualizar', ['familia',$familia->id]) }}"><i class="mdi mdi-eye me-1"></i> Visualizar</a>
                                     </div>
                                 </div>
                             </td>

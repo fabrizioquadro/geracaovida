@@ -13,4 +13,8 @@ class MembroMinisterio extends Model
         'membro_id',
         'ministerio_id',
     ];
+
+    public function membro(){
+        return $this->belongsTo(Membro::class);
+    }
 }

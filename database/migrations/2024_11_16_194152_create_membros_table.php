@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('cooperador')->nullable();
             $table->string('igreja_anterior')->nullable();
             $table->string('funcao')->nullable();
+            $table->string('st_batismo')->nullable();
             $table->date('dt_nascimento')->nullable();
             $table->text('alergico')->nullable();
             $table->text('obs')->nullable();
@@ -31,6 +32,9 @@ return new class extends Migration
             $table->string('aceita_msg')->nullable();
             $table->string('recebeu_lembranca')->nullable();
             $table->longText('audio_base64')->nullable();
+            $table->string('cpf')->nullable();
+            $table->string('rg')->nullable();
+            $table->text('endereco')->nullable();
             $table->timestamps();
         });
     }

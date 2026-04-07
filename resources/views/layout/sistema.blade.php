@@ -274,6 +274,26 @@ foreach($user->ministerios as $ministerio){
                                   <div data-i18n="Primeiras Visitas">Primeiras Visitas</div>
                                 </a>
                               </li>
+                              <li class="menu-item">
+                                <a href="{{ route('conexao_up') }}" class="menu-link">
+                                  <i class="menu-icon tf-icons mdi mdi-human"></i>
+                                  <div data-i18n="Conexão X UP">Conexão X UP</div>
+                                </a>
+                              </li>
+                              <li class="menu-item">
+                                <a href="{{ route('infantil') }}" class="menu-link">
+                                  <i class="menu-icon tf-icons mdi mdi-human-child"></i>
+                                  <div data-i18n="Infantil">Infantil</div>
+                                </a>
+                              </li>
+                              {{--
+                              <li class="menu-item">
+                                <a href="{{ route('familias') }}" class="menu-link">
+                                  <i class="menu-icon tf-icons mdi mdi-account-group"></i>
+                                  <div data-i18n="Famílias">Famílias</div>
+                                </a>
+                              </li>
+                              --}}
                           @endif
                           @if($user->tp_usuario == "Administrador" || $user->tp_usuario == 'Secretaria' || $user->tp_usuario == "Líder Cultos")
                               <li class="menu-item">

@@ -43,14 +43,20 @@
                                 <label for="email_pai">Email:</label>
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
-                            <div class="form-floating form-floating-outline">
-                                <input class="form-control" type="date" id="dt_nascimento_pai" name="dt_nascimento_pai"/>
-                                <label for="dt_nascimento_pai">Nascimento:</label>
-                            </div>
-                        </div>
                         @if($situacao == "Membro")
-                            <div class="col-md-3 mt-3">
+                            <div class="col-md-2 mt-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input class="form-control" type="date" id="dt_nascimento_pai" name="dt_nascimento_pai"/>
+                                    <label for="dt_nascimento_pai">Nascimento:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input class="form-control" type="text" id="st_batismo_pai" name="st_batismo_pai"/>
+                                    <label for="st_batismo_pai">Tipo Batismo:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
                                 <div class="form-floating form-floating-outline">
                                     <input class="form-control" type="date" id="data_batismo_pai" name="data_batismo_pai"/>
                                     <label for="data_batismo_pai">Data Batismo:</label>
@@ -59,11 +65,35 @@
                         @else
                             <div class="col-md-3 mt-3">
                                 <div class="form-floating form-floating-outline">
+                                    <input class="form-control" type="date" id="dt_nascimento_pai" name="dt_nascimento_pai"/>
+                                    <label for="dt_nascimento_pai">Nascimento:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <div class="form-floating form-floating-outline">
                                     <input class="form-control" type="text" id="como_veio_pai" name="como_veio_pai"/>
                                     <label for="como_veio_pai">Como Veio?</label>
                                 </div>
                             </div>
                         @endif
+                        <div class="col-md-3 mt-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="cpf_pai" name="cpf_pai"/>
+                                <label for="cpf_pai">CPF:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="rg_pai" name="rg_pai"/>
+                                <label for="rg_pai">RG:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="endereco_pai" name="endereco_pai"/>
+                                <label for="endereco_pai">Endereço:</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mt-3">
@@ -168,14 +198,20 @@
                                 <label for="email_mae">Email:</label>
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
-                            <div class="form-floating form-floating-outline">
-                                <input class="form-control" type="date" id="dt_nascimento_mae" name="dt_nascimento_mae"/>
-                                <label for="dt_nascimento_mae">Nascimento:</label>
-                            </div>
-                        </div>
                         @if($situacao == "Membro")
-                            <div class="col-md-3 mt-3">
+                            <div class="col-md-2 mt-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input class="form-control" type="date" id="dt_nascimento_mae" name="dt_nascimento_mae"/>
+                                    <label for="dt_nascimento_mae">Nascimento:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
+                                <div class="form-floating form-floating-outline">
+                                    <input class="form-control" type="text" id="st_batismo_mae" name="st_batismo_mae"/>
+                                    <label for="st_batismo_mae">Tipo Batismo:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
                                 <div class="form-floating form-floating-outline">
                                     <input class="form-control" type="date" id="data_batismo_mae" name="data_batismo_mae"/>
                                     <label for="data_batismo_mae">Data Batismo:</label>
@@ -184,11 +220,35 @@
                         @else
                             <div class="col-md-3 mt-3">
                                 <div class="form-floating form-floating-outline">
+                                    <input class="form-control" type="date" id="dt_nascimento_mae" name="dt_nascimento_mae"/>
+                                    <label for="dt_nascimento_mae">Nascimento:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <div class="form-floating form-floating-outline">
                                     <input class="form-control" type="text" id="como_veio_mae" name="como_veio_mae"/>
                                     <label for="como_veio_mae">Como Veio?</label>
                                 </div>
                             </div>
                         @endif
+                        <div class="col-md-3 mt-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="cpf_mae" name="cpf_mae"/>
+                                <label for="cpf_mae">CPF:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="rg_mae" name="rg_mae"/>
+                                <label for="rg_mae">RG:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="endereco_mae" name="endereco_mae"/>
+                                <label for="endereco_mae">Endereço:</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mt-3">

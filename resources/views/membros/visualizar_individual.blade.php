@@ -47,16 +47,24 @@
                 <label for="email">Email:</label><br>
                 <b>{{ $membro->email }}</b>
             </div>
-            <div class="col-md-3 mt-3 form-group">
-                <label for="dt_nascimento">Nascimento:</label><br>
-                <b>{{ dataDbForm($membro->dt_nascimento) }}</b>
-            </div>
             @if($membro->situacao == "Membro")
-                <div class="col-md-3 mt-3 form-group">
+                <div class="col-md-2 mt-3 form-group">
+                    <label for="dt_nascimento">Nascimento:</label><br>
+                    <b>{{ dataDbForm($membro->dt_nascimento) }}</b>
+                </div>
+                <div class="col-md-2 mt-3 form-group">
+                    <label for="">Tipo Batismo:</label><br>
+                    <b>{{ $membro->st_batismo }}</b>
+                </div>
+                <div class="col-md-2 mt-3 form-group">
                     <label for="data_batismo">Data Batismo:</label><br>
                     <b>{{ dataDbForm($membro->data_batismo) }}</b>
                 </div>
             @else
+                <div class="col-md-3 mt-3 form-group">
+                    <label for="dt_nascimento">Nascimento:</label><br>
+                    <b>{{ dataDbForm($membro->dt_nascimento) }}</b>
+                </div>
                 <div class="col-md-3 mt-3 form-group">
                     <label for="como_veio">Como Veio?</label><br>
                     <b>{{ $membro->como_veio }}</b>
@@ -91,6 +99,18 @@
                 <label for="recebeu_lembranca">Recebeu Lembrança?</label><br>
                 <b>{{ $membro->recebeu_lembranca }}</b>
             </div>
+            <div class="col-md-3 mt-3 form-group">
+                <label for="">CPF:</label><br>
+                <b>{{ $membro->cpf }}</b>
+            </div>
+            <div class="col-md-3 mt-3 form-group">
+                <label for="">RG:</label><br>
+                <b>{{ $membro->rg }}</b>
+            </div>
+            <div class="col-md-6 mt-3 form-group">
+                <label for="">Endereço:</label><br>
+                <b>{{ $membro->endereco }}</b>
+            </div>
         </div>
         @if($membro->obs)
             <div class="row">
@@ -100,18 +120,52 @@
                 </div>
             </div>
         @endif
-        @if($membro->filhos()->count() > 0)
-            <div class="card card-border-shadow-primary mb-4 mt-5">
-                <div class="card-body">
-                    <h6 class="card-title">Filhos</h6>
-                    <ul>
-                        @foreach($membro->filhos() as $filho)
-                            <li>{{ $filho->nome }}</li>
-                        @endforeach
-                    </ul>
+        <div class="card card-border-shadow-primary mb-4 mt-5">
+            <div class="card-body">
+                <h4 class="card-title">Família</h4>
+                @if($membro->conjugue())
+                    <div class="row">
+                        <div class="col-md-12 form-group mb-3">
+                            <label for="">Conjugue:</label><br>
+                            <a style="color: #696969 !important" href="{{ route('membros.visualizar', $membro->conjugue()->id) }}"><b>{{ $membro->conjugue()->nome }}</b></a></td>
+                        </div>
+                    </div>
+                @endif
+                <div class="row">
+                    @if($membro->pai())
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="">Pai:</label><br>
+                            <b>{{ $membro->pai()->nome }}</b>
+                            <a style="color: #696969 !important" href="{{ route('membros.visualizar', $membro->pai()->id) }}"><b>{{ $membro->pai()->nome }}</b></a></td>
+                        </div>
+                    @endif
+                    @if($membro->mae())
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="">Mãe:</label><br>
+                            <a style="color: #696969 !important" href="{{ route('membros.visualizar', $membro->mae()->id) }}"><b>{{ $membro->mae()->nome }}</b></a></td>
+                        </div>
+                    @endif
                 </div>
+                @if($membro->filhos()->count() > 0)
+                    <hr>
+                    <h5 class="card-title mt-1">Filhos</h5>
+                    <table class="table">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($membro->filhos() as $filho)
+                                <tr>
+                                    <td> <a style="color: #696969 !important" href="{{ route('membros.visualizar', $filho->id) }}">{{ $filho->nome }}</a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
             </div>
-        @endif
+        </div>
         <hr>
         <div class="d-flex justify-content-start mt-3">
             <audio id='audio_source' controls="controls" src='{{ $membro->audio_base64 }}'>

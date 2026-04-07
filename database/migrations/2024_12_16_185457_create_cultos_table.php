@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('tp_culto');
             $table->longText('audio_base64')->nullable();
             $table->unsignedBigInteger('ministerio_id')->nullable();
+            $table->integer('nr_vagas')->nullable();
             $table->foreign('ministerio_id')->references('id')->on('ministerios');
             $table->timestamps();
         });

@@ -87,12 +87,14 @@
                                         <a class="dropdown-item waves-effect" href="{{ route('membros.editar', $membro->id) }}"><i class="mdi mdi-pencil-outline me-1"></i> Editar</a>
                                         <a class="dropdown-item waves-effect" href="{{ route('membros.excluir', $membro->id) }}"><i class="mdi mdi-trash-can-outline me-1"></i> Excluir</a>
                                         <a class="dropdown-item waves-effect" href="{{ route('membros.visualizar', $membro->id) }}"><i class="mdi mdi-eye me-1"></i> Visualizar</a>
+                                        <a class="dropdown-item waves-effect" href="{{ route('membros.familia', $membro->id) }}"><i class="mdi mdi-account-group me-1"></i> Familia</a>
                                         @if($membro->situacao == "Primeiras Visitas")
                                             <a class="dropdown-item waves-effect" href="{{ route('membros.enviar_visitas_frequentes', $membro->id) }}"><i class="mdi mdi-chevron-right me-1"></i> Enviar p/ Visitantes Frequentes</a>
                                         @endif
                                         @if($membro->situacao != "Membro")
                                             <a class="dropdown-item waves-effect" href="{{ route('membros.batizar', $membro->id) }}"><i class="mdi mdi-chevron-double-right me-1"></i> Batizar</a>
                                         @endif
+
                                     </div>
                                 </div>
                             </td>

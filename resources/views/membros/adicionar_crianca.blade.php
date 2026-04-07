@@ -33,6 +33,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-2 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="fone_pai" name="fone_pai" maxlength="15" onkeypress="mascara( this, mtel )"/>
+                        <label for="fone_pai">Fone:</label>
+                    </div>
+                </div>
                 <div class="col-md-3 mt-3">
                     <div class="form-floating form-floating-outline">
                         <select class="form-select" id="pai" name='pai_id' aria-label="Default select example">
@@ -55,22 +61,40 @@
                         <label for="mae">Mãe:</label>
                     </div>
                 </div>
-                <div class="col-md-3 mt-3">
+                <div class="col-md-2 mt-3">
                     <div class="form-floating form-floating-outline">
                         <input class="form-control" type="text" id="alergico" name="alergico"/>
                         <label for="alergico">Alérgico:</label>
                     </div>
                 </div>
-                <div class="col-md-3 mt-3">
+                <div class="col-md-2 mt-3">
                     <div class="form-floating form-floating-outline">
                         <input class="form-control" type="text" id="recebeu_lembranca" name="recebeu_lembranca"/>
                         <label for="recebeu_lembranca">Recebeu Lembrança?</label>
                     </div>
                 </div>
-                <div class="col-md-3 mt-3">
+                <div class="col-md-2 mt-3">
                     <div class="form-floating form-floating-outline">
                         <input class="form-control" type="text" id="postar_redes" name="postar_redes"/>
                         <label for="postar_redes">Autoriza Postagem?</label>
+                    </div>
+                </div>
+                <div class="col-md-2 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="cpf" name="cpf"/>
+                        <label for="cpf">CPF:</label>
+                    </div>
+                </div>
+                <div class="col-md-2 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="rg" name="rg"/>
+                        <label for="rg">RG:</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <div class="form-floating form-floating-outline">
+                        <input class="form-control" type="text" id="endereco" name="endereco"/>
+                        <label for="endereco">Endereço:</label>
                     </div>
                 </div>
             </div>

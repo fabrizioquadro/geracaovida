@@ -40,6 +40,10 @@
         </div>
         <div class="row">
             <div class="col-md-3 mt-3 form-group">
+                <label for="fone">Telefone:</label><br>
+                <b>{{ $membro->fone }}</b>
+            </div>
+            <div class="col-md-3 mt-3 form-group">
                 <label for="pai">Pai:</label><br>
                 <b>{{ $membro->pai() ? $membro->pai()->nome : '' }}</b>
             </div>
@@ -54,6 +58,18 @@
             <div class="col-md-3 mt-3 form-group">
                 <label for="recebeu_lembranca">Recebeu Lembrança?</label><br>
                 <b>{{ $membro->recebeu_lembranca }}</b>
+            </div>
+            <div class="col-md-3 mt-3 form-group">
+                <label for="">Autorizou Postagem?</label><br>
+                <b>{{ $membro->postar_redes }}</b>
+            </div>
+            <div class="col-md-3 mt-3 form-group">
+                <label for="">CPF:</label><br>
+                <b>{{ $membro->cpf }}</b>
+            </div>
+            <div class="col-md-6 mt-3 form-group">
+                <label for="">Endereço:</label><br>
+                <b>{{ $membro->endereco }}</b>
             </div>
         </div>
         @if($membro->obs)
